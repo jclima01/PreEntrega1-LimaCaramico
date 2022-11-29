@@ -36,7 +36,9 @@ function NavBar() {
           </Nav>
           <Nav>
             <Nav.Link href="#deets">
+
               <CartWidget />
+              
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

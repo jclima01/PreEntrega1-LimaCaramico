@@ -6,12 +6,12 @@ import ItemListContainer from './components/itemListContainer/ItemListContainer'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
-
+  let mensaje = "La mejor pizza de la ciudad"
 
   return (
     <div>
       <NavBar />
-      <ItemListContainer />
+      <ItemListContainer greeting={mensaje} />
     </div>
   )
 }
