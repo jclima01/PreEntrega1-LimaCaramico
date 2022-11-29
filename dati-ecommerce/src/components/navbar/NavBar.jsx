@@ -8,16 +8,15 @@ function NavBar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <a href="https://ibb.co/cCN8g7S">
-          <img
+          
+        
+        <Navbar.Brand href="#home"><img
             src="https://i.ibb.co/cCN8g7S/logoDati.jpg"
             alt="logoDati"
             border="0"
             width="50"
             height="50"
-          />
-        </a>
-        <Navbar.Brand href="#home">Dati Pizzería</Navbar.Brand>
+          /> Dati Pizzería</Navbar.Brand>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
