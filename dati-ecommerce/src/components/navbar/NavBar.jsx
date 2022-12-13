@@ -2,6 +2,8 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { Link, NavLink } from "react-router-dom";
+import QuienesSomos from "../../containers/QuienesSomos/QuienesSomos";
 import CartWidget from "../cartWidget/CartWidget";
 
 function NavBar() {
@@ -10,36 +12,40 @@ function NavBar() {
       <Container>
           
         
-        <Navbar.Brand href="#home"><img
+        <NavLink className={({isActive}) => isActive ? 'text-secondary p-2' : 'text-secondary p-2 m-2'} to ='/home'><img
             src="https://i.ibb.co/cCN8g7S/logoDati.jpg"
             alt="logoDati"
             border="0"
             width="50"
             height="50"
-          /> Dati Pizzería</Navbar.Brand>
+          />Dati Pizzería</NavLink>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features">Quienes somos</Nav.Link>
-            <Nav.Link href="#pricing">Hacé tu pedido</Nav.Link>
+            <NavLink to='/quienes-somos' className={'card text-center pt-1 bg-transparent text-secondary '}>Quienes somos</NavLink>
+
             <NavDropdown
               title="Nuestros productos"
-              id="collasible-nav-dropdown"
+              id="collasible-nav-dropdown text-secondary"
             >
-              <NavDropdown.Item href="#action/3.1">Pizzas</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Calzones</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Empanadas</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.4">Bebidas</NavDropdown.Item>
+              <NavLink to='/categoria/Pizzas' className={'card text-center  p-2 m-2 bg-black text-white' } >Pizzas</NavLink><br />
+              <NavLink to='/categoria/Calzones'className={'card text-center  p-2 m-2 bg-black text-white'} >Calzones</NavLink><br />
+              <NavLink to='/categoria/Empanadas'className={'card text-center  p-2 m-2 bg-black text-white'} >Empanadas</NavLink><br />
+              <NavLink to='/categoria/Faina'className={'card text-center  p-2 m-2 bg-black text-white'} >Faina</NavLink><br />
+              <NavLink to='/categoria/FuggazzettaRellena'className={'card text-center  p-2 m-2 bg-black text-white'} >Fuggazzettas Rellena</NavLink><br />
+              <NavLink to='/categoria/Bebidas'className={'card text-center  p-2 m-2 bg-black text-white'} >Bebidas</NavLink><br />
+              
+              
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">
-
-              <CartWidget />
+            <NavLink className={'btn btn-secondary'} to ='/cart'>
+              <CartWidget/>
               
-            </Nav.Link>
+              
+            </NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>
