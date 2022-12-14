@@ -1,51 +1,32 @@
-import React from 'react'
+import { useState } from "react";
 
-const ItemCount = () => {
+const ItemCount = ({ stock = 5 }) => {
+  const [contador, setearContador] = useState(0);
+  const [booleano, setBooleano] = useState(true);
+
+  const agregar = () => {
+    if (contador < stock) setearContador(contador + 1);
+  };
+  const restar = () => {
+    if (contador > 1 )setearContador(contador - 1);
+  };
+
   
-    const [ contador, setearContador ] = useState(0) 
-    const [booleano, setBooleano] = useState(true)
-     // count = count + 1 - count += 1 - count ++
-     const handleCount = () => {
-        // count ++
-        // console.log(count)
-        setearContador(contador + 1)
-    }
+  return (
+    <center>
+      <label htmlFor="">
+        Cantidad: {contador}
+      </label>
+      <button className="btn btn-outline-primary" onClick={agregar}>
+        +
+      </button>
 
-    const hanldeBool = ( ) => setBooleano(!booleano)
-    
-    return (
-        <center>
-        <button 
-            className="btn btn-outline-primary" 
-            onClick={handleCount} 
-        > 
-            + 
-        </button>     
-        <label htmlFor="">{contador}</label>
-      
-        <button 
-            className="btn btn-outline-primary" 
-            onClick={handleCount} 
-        > 
-            - 
-        </button> 
-        <br />    
-        <button 
-            className="btn btn-outline-primary" 
-            onClick={handleCount} 
-        > 
-            agregar al carrito 
-        </button>     
-        <br></br>
-        {/* <button 
-            className="btn btn-outline-primary" 
-            onClick={hanldeBool} 
-        > 
-            Ejecutar Booleano
-        </button>      */}
+
+      <button className="btn btn-outline-primary" onClick={restar}>
+        -
+      </button>
     </center>
-    )
-  
-}
+  );
+};
 
-export default ItemCount
+export default ItemCount;

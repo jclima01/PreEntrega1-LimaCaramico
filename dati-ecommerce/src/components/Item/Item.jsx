@@ -19,7 +19,7 @@ const Item = ({product}) => {
           <p className="card-text">{product?.descripcion}</p>
           <p>${product?.precio}</p>
           <Link to={`/detail/${product.id}`} className="btn btn-primary">
-            Añadir al carrito
+            Detalles
           </Link>
         </div>
       </div>

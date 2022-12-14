@@ -10,41 +10,86 @@ function NavBar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-          
-        
-        <NavLink className={({isActive}) => isActive ? 'text-secondary p-2' : 'text-secondary p-2 m-2'} to ='/home'><img
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "card text-secondary p-2" : "text-secondary p-2 m-2"
+          }
+          to="/home"
+        >
+          <img
+          className="card"
             src="https://i.ibb.co/cCN8g7S/logoDati.jpg"
             alt="logoDati"
             border="0"
             width="50"
             height="50"
-          />Dati Pizzería</NavLink>
+          />
+        </NavLink>
+        
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
-        <Navbar.Collapse id="responsive-navbar-nav">
+        <Navbar.Collapse id="responsive-navbar-nav" className="bg-trasparent">
           <Nav className="me-auto">
-            <NavLink to='/quienes-somos' className={'card text-center pt-1 bg-transparent text-secondary '}>Quienes somos</NavLink>
+            <NavLink
+              to="/quienes-somos"
+              className={"card text-center mt-2 m-2 pt-2 p-3 bg-transparent text-secondary "}
+            >
+              Quienes somos
+            </NavLink>
 
-            <NavDropdown
+            <NavDropdown 
+              className={"card text-center m-2 ml-2 pt-1 bg-transparent text-secondary "}
               title="Nuestros productos"
               id="collasible-nav-dropdown text-secondary"
             >
-              <NavLink to='/categoria/Pizzas' className={'card text-center  p-2 m-2 bg-black text-white' } >Pizzas</NavLink><br />
-              <NavLink to='/categoria/Calzones'className={'card text-center  p-2 m-2 bg-black text-white'} >Calzones</NavLink><br />
-              <NavLink to='/categoria/Empanadas'className={'card text-center  p-2 m-2 bg-black text-white'} >Empanadas</NavLink><br />
-              <NavLink to='/categoria/Faina'className={'card text-center  p-2 m-2 bg-black text-white'} >Faina</NavLink><br />
-              <NavLink to='/categoria/FuggazzettaRellena'className={'card text-center  p-2 m-2 bg-black text-white'} >Fuggazzettas Rellena</NavLink><br />
-              <NavLink to='/categoria/Bebidas'className={'card text-center  p-2 m-2 bg-black text-white'} >Bebidas</NavLink><br />
-              
-              
+              <NavLink
+                to="/categoria/Pizzas"
+                className={"card text-center  p-2 m-2 bg-black text-white"}
+              >
+                Pizzas
+              </NavLink>
+              <br />
+              <NavLink
+                to="/categoria/Calzones"
+                className={"card text-center  p-2 m-2 bg-black text-white"}
+              >
+                Calzones
+              </NavLink>
+              <br />
+              <NavLink
+                to="/categoria/Empanadas"
+                className={"card text-center  p-2 m-2 bg-black text-white"}
+              >
+                Empanadas
+              </NavLink>
+              <br />
+              <NavLink
+                to="/categoria/Faina"
+                className={"card text-center  p-2 m-2 bg-black text-white"}
+              >
+                Faina
+              </NavLink>
+              <br />
+              <NavLink
+                to="/categoria/FuggazzettaRellena"
+                className={"card text-center  p-2 m-2 bg-black text-white"}
+              >
+                Fuggazzettas Rellena
+              </NavLink>
+              <br />
+              <NavLink
+                to="/categoria/Bebidas"
+                className={"card text-center  p-2 m-2 bg-black text-white"}
+              >
+                Bebidas
+              </NavLink>
+              <br />
             </NavDropdown>
           </Nav>
           <Nav>
-            <NavLink className={'btn btn-secondary'} to ='/cart'>
-              <CartWidget/>
-              
-              
+            <NavLink className={"btn btn-secondary"} to="/cart">
+              <CartWidget />
             </NavLink>
           </Nav>
         </Navbar.Collapse>
