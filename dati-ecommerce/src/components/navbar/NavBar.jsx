@@ -1,11 +1,31 @@
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import {  NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import CartWidget from "../cartWidget/CartWidget";
 
 function NavBar() {
+  
+  const [categoryList, setCategoryList] = useState([]);
+  useEffect(() => {
+    const db = getFirestore();
+    const queryCollection = collection(db, "categoryList");
+   
+    getDocs(queryCollection)
+      .then((res) =>
+        setCategoryList(
+          res.docs.map((category) => ({
+            id: category.id,
+            ...category.data(),
+          }))
+        )
+      )
+      .catch((err) => console.log(err))
+      // .finally(() => setCategoryList([]));
+  }, []);
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -13,7 +33,7 @@ function NavBar() {
           className={({ isActive }) =>
             isActive ? "card text-secondary p-2" : "text-secondary p-2 m-2"
           }
-          to="/home"
+          to="/"
         >
           <img
             className="card"
@@ -29,65 +49,18 @@ function NavBar() {
 
         <Navbar.Collapse id="responsive-navbar-nav" className="bg-trasparent">
           <Nav className="me-auto">
-            <NavLink
-              to="/about-us"
-              className={
-                "card text-center mt-2 m-2 pt-2 p-3 bg-transparent text-secondary "
-              }
+            
+            {categoryList.map(({nombre, id}) =>
+              <NavLink
+              key={id}
+              to={`/category/${nombre}`}
+              className={"card text-center  p-2 m-2 bg-transparent text-white"}
             >
-              Quienes somos
+              {`${nombre}`}
             </NavLink>
-
-            <NavDropdown
-              className={
-                "card text-center m-2 ml-2 pt-1 bg-transparent text-secondary "
-              }
-              title="Nuestros productos"
-              id="collasible-nav-dropdown text-secondary"
-            >
-              <NavLink
-                to="/category/Pizzas"
-                className={"card text-center  p-2 m-2 bg-black text-white"}
-              >
-                Pizzas
-              </NavLink>
-              <br />
-              <NavLink
-                to="/category/Calzones"
-                className={"card text-center  p-2 m-2 bg-black text-white"}
-              >
-                Calzones
-              </NavLink>
-              <br />
-              <NavLink
-                to="/category/Empanadas"
-                className={"card text-center  p-2 m-2 bg-black text-white"}
-              >
-                Empanadas
-              </NavLink>
-              <br />
-              <NavLink
-                to="/category/Faina"
-                className={"card text-center  p-2 m-2 bg-black text-white"}
-              >
-                Faina
-              </NavLink>
-              <br />
-              <NavLink
-                to="/category/FuggazzettaRellena"
-                className={"card text-center  p-2 m-2 bg-black text-white"}
-              >
-                Fuggazzettas Rellena
-              </NavLink>
-              <br />
-              <NavLink
-                to="/category/Bebidas"
-                className={"card text-center  p-2 m-2 bg-black text-white"}
-              >
-                Bebidas
-              </NavLink>
-              <br />
-            </NavDropdown>
+            
+            )}
+            
           </Nav>
           <Nav>
             <NavLink className={"btn btn-secondary"} to="/cart">

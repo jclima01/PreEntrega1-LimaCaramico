@@ -14,44 +14,26 @@ const ItemListContainer = () => {
   const [products, setProducts] = useState({});
   const [loading, setLoading] = useState(true);
   const { categoryId } = useParams();
-
   useEffect(() => {
-    if (categoryId) {
-      
-        const db = getFirestore();
-        const queryCollection = collection(db, "products");
-        const queryFiltrada = query(
-          queryCollection,
-          where("categoria", "==", categoryId)
-        );
-      getDocs(queryFiltrada)
-        .then((res) =>
-          setProducts(
-            res.docs.map((product) => ({
-              id: product.id,
-              ...product.data(),
-            }))
-          )
+    const db = getFirestore();
+    const queryCollection = collection(db, "products");
+    const queryFiltered = categoryId
+      ? query(queryCollection, where("categoria", "==", categoryId))
+      : queryCollection;
+    getDocs(queryFiltered)
+      .then((res) =>
+        setProducts(
+          res.docs.map((product) => ({
+            id: product.id,
+            ...product.data(),
+          }))
         )
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false));
-    } else {
-      const db = getFirestore();
-      const queryCollection = collection(db, "products");
-      getDocs(queryCollection)
-        .then((res) =>
-          setProducts(
-            res.docs.map((product) => ({
-              id: product.id,
-              ...product.data(),
-            }))
-          )
-        )
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false));
-      }
-  }, [categoryId]);
+      )
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
 
+    
+  }, [categoryId]);
 
   return (
     <div className="flex-direction row p-4">

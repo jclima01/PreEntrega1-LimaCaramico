@@ -4,23 +4,21 @@ import { useParams } from "react-router-dom";
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
 
 const ItemDetailContainer = () => {
-  const { productoId } = useParams();
-  const [product,setProducts] = useState({})
+  const { productId } = useParams();
+  const [product, setProducts] = useState({});
 
-    useEffect(() => {
+  useEffect(() => {
     const db = getFirestore();
-    const queryDoc = doc(db, "products", productoId );
+    const queryDoc = doc(db, "products", productId);
     getDoc(queryDoc)
       .then((res) => setProducts({ id: res.id, ...res.data() }))
       .catch((err) => console.log(err));
-      // .finally()
+    // .finally()
   }, []);
 
   return (
     <div className="card w-50">
-      <ItemDetail
-      product={product}
-       />
+      <ItemDetail product={product} />
     </div>
   );
 };
