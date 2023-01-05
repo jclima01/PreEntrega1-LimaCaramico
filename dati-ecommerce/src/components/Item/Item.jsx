@@ -16,12 +16,11 @@ const Item = ({product}) => {
         />
         <div className="card-body">
           <h5 className="card-title">{product?.nombre}</h5>
-          <p className="card-text">{product?.descripcion}</p>
           <p>${product?.precio}</p>
+        </div>
           <Link to={`/detail/${product.id}`} className="btn btn-primary">
             Detalles
-          </Link>
-        </div>
+          </Link  >
       </div>
     </div>
   );

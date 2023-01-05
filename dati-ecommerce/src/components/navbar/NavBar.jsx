@@ -2,8 +2,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { Link, NavLink } from "react-router-dom";
-import QuienesSomos from "../../containers/QuienesSomos/QuienesSomos";
+import {  NavLink } from "react-router-dom";
 import CartWidget from "../cartWidget/CartWidget";
 
 function NavBar() {
@@ -17,7 +16,7 @@ function NavBar() {
           to="/home"
         >
           <img
-          className="card"
+            className="card"
             src="https://i.ibb.co/cCN8g7S/logoDati.jpg"
             alt="logoDati"
             border="0"
@@ -25,61 +24,64 @@ function NavBar() {
             height="50"
           />
         </NavLink>
-        
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
         <Navbar.Collapse id="responsive-navbar-nav" className="bg-trasparent">
           <Nav className="me-auto">
             <NavLink
-              to="/quienes-somos"
-              className={"card text-center mt-2 m-2 pt-2 p-3 bg-transparent text-secondary "}
+              to="/about-us"
+              className={
+                "card text-center mt-2 m-2 pt-2 p-3 bg-transparent text-secondary "
+              }
             >
               Quienes somos
             </NavLink>
 
-            <NavDropdown 
-              className={"card text-center m-2 ml-2 pt-1 bg-transparent text-secondary "}
+            <NavDropdown
+              className={
+                "card text-center m-2 ml-2 pt-1 bg-transparent text-secondary "
+              }
               title="Nuestros productos"
               id="collasible-nav-dropdown text-secondary"
             >
               <NavLink
-                to="/categoria/Pizzas"
+                to="/category/Pizzas"
                 className={"card text-center  p-2 m-2 bg-black text-white"}
               >
                 Pizzas
               </NavLink>
               <br />
               <NavLink
-                to="/categoria/Calzones"
+                to="/category/Calzones"
                 className={"card text-center  p-2 m-2 bg-black text-white"}
               >
                 Calzones
               </NavLink>
               <br />
               <NavLink
-                to="/categoria/Empanadas"
+                to="/category/Empanadas"
                 className={"card text-center  p-2 m-2 bg-black text-white"}
               >
                 Empanadas
               </NavLink>
               <br />
               <NavLink
-                to="/categoria/Faina"
+                to="/category/Faina"
                 className={"card text-center  p-2 m-2 bg-black text-white"}
               >
                 Faina
               </NavLink>
               <br />
               <NavLink
-                to="/categoria/FuggazzettaRellena"
+                to="/category/FuggazzettaRellena"
                 className={"card text-center  p-2 m-2 bg-black text-white"}
               >
                 Fuggazzettas Rellena
               </NavLink>
               <br />
               <NavLink
-                to="/categoria/Bebidas"
+                to="/category/Bebidas"
                 className={"card text-center  p-2 m-2 bg-black text-white"}
               >
                 Bebidas

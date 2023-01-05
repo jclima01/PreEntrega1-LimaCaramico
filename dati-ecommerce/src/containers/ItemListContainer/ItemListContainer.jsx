@@ -1,38 +1,61 @@
 import React, { useEffect, useState } from "react";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ItemList from "../../components/ItemList/ItemList";
-import { gFetch } from "../../helpers/gFetch";
+import Loading from "../../components/Loading/Loading";
 
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
 const ItemListContainer = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState({});
   const [loading, setLoading] = useState(true);
-  const { categoriaId } = useParams();
-  console.log(categoriaId)
+  const { categoryId } = useParams();
+
   useEffect(() => {
-    if (categoriaId) {
-      gFetch() // simulación de fetch para consultar una api
-        .then((resp) =>
+    if (categoryId) {
+      
+        const db = getFirestore();
+        const queryCollection = collection(db, "products");
+        const queryFiltrada = query(
+          queryCollection,
+          where("categoria", "==", categoryId)
+        );
+      getDocs(queryFiltrada)
+        .then((res) =>
           setProducts(
-            resp.filter((product) => product.categoria === categoriaId)
+            res.docs.map((product) => ({
+              id: product.id,
+              ...product.data(),
+            }))
           )
-        ) // en esta linea cambia el estado
+        )
         .catch((err) => console.log(err))
         .finally(() => setLoading(false));
     } else {
-      gFetch() // simulación de fetch para consultar una api
-        .then((resp) => setProducts(resp)) // en esta linea cambia el estado
+      const db = getFirestore();
+      const queryCollection = collection(db, "products");
+      getDocs(queryCollection)
+        .then((res) =>
+          setProducts(
+            res.docs.map((product) => ({
+              id: product.id,
+              ...product.data(),
+            }))
+          )
+        )
         .catch((err) => console.log(err))
         .finally(() => setLoading(false));
-    }
-  }, [categoriaId]);
+      }
+  }, [categoryId]);
+
 
   return (
-    <div className="flex-direction row">
-      {loading ? (
-        <h2>Cargando productos ...</h2>
-      ) : (
-        <ItemList products={products}/>  
-      )}
+    <div className="flex-direction row p-4">
+      {loading ? <Loading /> : <ItemList products={products} />}
     </div>
   );
 };

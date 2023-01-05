@@ -1,12 +1,3 @@
-// const productsDB = [];
-// const url = "https://633ef66c83f50e9ba3bcfbe2.mockapi.io/Api";
-// export const cargarDatos = async () => {
-//   await fetch(url)
-//     .then((response) => response.json())
-//     .then((data) => {
-//       productsDB = [...data];
-//     });
-// };
 
 let products = [
   {

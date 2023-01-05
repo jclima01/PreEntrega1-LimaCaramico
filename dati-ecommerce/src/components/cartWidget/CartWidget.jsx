@@ -1,7 +1,6 @@
-import React from "react";
-import { useState } from "react";
+import { useCartContext } from "../../context/CartContext";
 const CartWidget = () => {
-  const [count, setCount] = useState(0);
+  const { totalQuantity } = useCartContext();
   return (
     <div>
       <svg
@@ -18,7 +17,7 @@ const CartWidget = () => {
         />
       </svg>
       <br />
-      {count}
+      {totalQuantity() > 0 && <div>{totalQuantity()}</div>}
     </div>
   );
 };

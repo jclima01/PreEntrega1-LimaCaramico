@@ -1,6 +1,6 @@
 import React from 'react'
 
-const QuienesSomos = () => {
+const AboutUs = () => {
   return (
     <div>
       Somos la pizzeria mas piola de mdp
@@ -8,4 +8,4 @@ const QuienesSomos = () => {
   )
 }
 
-export default QuienesSomos
+export default AboutUs
