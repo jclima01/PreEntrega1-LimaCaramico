@@ -18,10 +18,10 @@ const ItemDetail = ({ product }) => {
     setIsCount(false)
   };
   return (
-    <div className="col-12 nb-5 d-flex p-1" key={product.id}>
-      <div className="card text-light bg-dark w-100 justify-content-between">
+    <div className="col-12 d-flex p-3" key={product.id} style={{ width: "18rem" }}>
+      <div className="col-12 card text-light bg-dark w-100 justify-content-between">
         <img
-          className="card-Img-top w-18rem"
+          className="card-Img-top justify-content-center"
           src={product.imagen}
         />
         <div className="card-body">
@@ -32,15 +32,17 @@ const ItemDetail = ({ product }) => {
           isCount? 
           <ItemCount onAdd={onAdd} stock={10} initial={1} />
           :
-          <>
+          <center>
+          
           <Link to='/cart'>
-          <button className="btn btn-outline-primary"> Ir al carrito </button>
+          <button className="btn btn-primary  align-content-center p-1 m-2"> Ir al carrito </button>
           </Link>
           
           <Link to='/'>
-          <button className="btn btn-outline-primary"> Seguir Comprando </button>
+          <button className="btn btn-primary align-content-center p-1 m-2"> Seguir Comprando </button>
           </Link>
-          </>
+          </center>
+          
         }
         </div>
       </div>

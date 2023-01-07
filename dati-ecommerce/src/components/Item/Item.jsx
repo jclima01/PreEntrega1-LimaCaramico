@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Item = ({product}) => {
   return (
     <div
-      className="col-12 col-md-4 nb-5 d-flex p-1 justify-content-center"
+      className="col-12 d-flex p-3"
       key={product.id}
       style={{ width: "18rem" }}
     >

@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import ContactForm from "../../components/contactForm/ContactForm";
@@ -26,30 +25,34 @@ const CartContainer = () => {
   return (
     <>
       {totalQuantity() === 0 && (
-        <div>
-          Carrito Vacío
+        <div className="flex-direction row p-4 align-content-center justify-content-center">
+          <p>Carrito Vacío</p>
           <Link to="/">
-            <button className="btn btn-outline-primary">
-              {" "}
-              Seguir Comprando{" "}
-            </button>
+            <button className="btn btn-primary">Seguir Comprando</button>
           </Link>
         </div>
       )}
-      <div className="col-12 col-md-4 nb-5 d-flex p-1 justify-content-center">
+
+      <div className="flex-direction row p-4 align-content-center justify-content-center">
         {cartList.map((product) => (
-          <Card
-            style={{ width: "18rem" }}
+          <div
+            className="col-12 d-flex p-3"
             key={product.id}
-            className="card text-light bg-dark m-1 "
+            style={{ width: "18rem" }}
           >
-            <Card.Img variant="top" src={product.imagen} />
-            <Card.Body>
-              <Card.Title>{product.nombre}</Card.Title>
-              <Card.Text>
-                Cantidad : {product.cantidad}
-                <br /> ${product.cantidad * product.precio}
-              </Card.Text>
+            <div className="card text-light bg-dark">
+              <img
+                className="card-Img-top"
+                src={product?.imagen}
+                alt="card image cap"
+              />
+              <div className="card-body">
+                <h5 className="card-title">{product?.nombre}</h5>
+                <p>
+                  Cantidad : {product?.cantidad}
+                  <br />${product?.cantidad * product?.precio}
+                </p>
+              </div>
               <Button
                 variant="primary"
                 onClick={() => {
@@ -58,27 +61,26 @@ const CartContainer = () => {
               >
                 Eliminar
               </Button>
-            </Card.Body>
-          </Card>
+            </div>
+          </div>
         ))}
-      </div>
-      {totalPrice() > 0 && <label> Total: ${totalPrice()}</label>} <br />
-      {totalQuantity() > 0 && (
         <div>
-          <button className="btn btn-outline-danger" onClick={clearCart}>
+          </div>
+
+      {totalPrice() > 0 && (
+        <div className="flex-direction row card col-4 justify-content-center">
+          <h2 className="">Total: ${totalPrice()}</h2>
+          <button className="btn btn-primary col-8" onClick={clearCart}>
             Vaciar carrito
           </button>
-          <Button
-            variant="primary"
-            onClick={() => {
-              getOrder();
-            }}
-          >
-            Generar Orden
-          </Button>
+
+          <ContactForm />
+          </div>
+        )}
         </div>
-      )}
-      <ContactForm />
+
+
+      
     </>
   );
 };

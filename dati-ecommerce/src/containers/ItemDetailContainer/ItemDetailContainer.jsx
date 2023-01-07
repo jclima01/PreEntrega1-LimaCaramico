@@ -17,7 +17,7 @@ const ItemDetailContainer = () => {
   }, []);
 
   return (
-    <div className="card w-50">
+    <div className="flex-direction row p-4 align-content-center justify-content-center ">
       <ItemDetail product={product} />
     </div>
   );

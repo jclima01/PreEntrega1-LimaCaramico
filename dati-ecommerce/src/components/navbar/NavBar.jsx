@@ -24,7 +24,6 @@ function NavBar() {
         )
       )
       .catch((err) => console.log(err))
-      // .finally(() => setCategoryList([]));
   }, []);
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -36,15 +35,20 @@ function NavBar() {
           to="/"
         >
           <img
-            className="card"
+      
             src="https://i.ibb.co/cCN8g7S/logoDati.jpg"
             alt="logoDati"
             border="0"
+            background-color="transparent"
             width="50"
             height="50"
           />
         </NavLink>
-
+          <NavLink to='/about-us'
+             className={"card text-center  p-2 m-2 bg-secondary text-white"}
+          >
+            Acerca de nosotros
+          </NavLink>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
         <Navbar.Collapse id="responsive-navbar-nav" className="bg-trasparent">

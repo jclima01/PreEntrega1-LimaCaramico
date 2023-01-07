@@ -36,7 +36,7 @@ const ItemListContainer = () => {
   }, [categoryId]);
 
   return (
-    <div className="flex-direction row p-4">
+    <div className="flex-direction row p-4 align-content-center justify-content-center">
       {loading ? <Loading /> : <ItemList products={products} />}
     </div>
   );

@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 const ContactForm = () => {
   return (
-    <Form>
+    <Form className='col-4 d-block p-3' style={{ width: "18rem" }}>
       <Form.Group className="mb-3" controlId="formBasicText">
         <Form.Label>Nombre</Form.Label>
         <Form.Control type="text" placeholder="Ingrese su nombre" />

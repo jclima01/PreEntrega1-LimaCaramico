@@ -15,19 +15,19 @@ const ItemCount = ({ stock = 5, onAdd }) => {
   const handleOnAdd = () => onAdd(contador)
   return (
     <center>
-      <label htmlFor="">
+      <label >
         Cantidad: {contador}
       </label>
-      <button className="btn btn-outline-primary" onClick={agregar}>
+      <button className="btn btn-outline-success m-2" onClick={agregar}>
         +
       </button>
 
 
-      <button className="btn btn-outline-primary" onClick={restar}>
+      <button className="btn btn-outline-success m-2" onClick={restar}>
         -
       </button>
       
-          <div className="d-grid gap-2 d-md-block">
+          <div className="d-grid m-2 d-md-block">
             <button className="btn btn-primary" onClick={handleOnAdd}> Agregar al carrito</button>
           </div>
         
