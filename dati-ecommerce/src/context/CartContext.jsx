@@ -7,17 +7,14 @@ export const useCartContext = () => useContext(CartContext);
 export const CartContextProvider = ({ children }) => {
   const cartLS = JSON.parse(localStorage.getItem("cartLS")) ?? [];
   const [cartList, setCartList] = useState(cartLS);
-  
-  const [buyerData, setBuyerData] = useState();
+
+  const [buyerData, setBuyerData] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem('cartLS', JSON.stringify(cartList))
- 
-  }, [cartList])
-  
+    localStorage.setItem("cartLS", JSON.stringify(cartList));
+  }, [cartList]);
 
   const addToCart = (prod) => {
-    
     const idx = cartList.findIndex((product) => product.id === prod.id);
     if (idx === -1) {
       setCartList([...cartList, prod]);
@@ -33,21 +30,20 @@ export const CartContextProvider = ({ children }) => {
 
       icon: "success",
     });
-   };
-   const getOrder = () =>{
-    const order ={
-       buyer:{name: '', phone: '', email:''},
-      items: cartList.map(({nombre,id,precio}) => ({
+  };
+  const getOrder = () => {
+    const order = {
+      buyer: { name: "", phone: "", email: "" },
+      items: cartList.map(({ nombre, id, precio }) => ({
         nombre,
         id,
-        precio
-        
+        precio,
       })),
-      total: totalPrice()
-    }
-    console.log(order)
-    return order
-  }
+      total: totalPrice(),
+    };
+    console.log(order);
+    return order;
+  };
 
   const totalPrice = () =>
     cartList.reduce(
@@ -71,7 +67,7 @@ export const CartContextProvider = ({ children }) => {
         totalQuantity,
         totalPrice,
         deleteItem,
-        getOrder
+        getOrder,
       }}
     >
       {children}
