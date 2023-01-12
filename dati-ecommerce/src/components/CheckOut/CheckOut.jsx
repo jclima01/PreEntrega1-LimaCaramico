@@ -7,7 +7,7 @@ const CheckOut = () => {
     <div className="d-flex flex-column p-4  justify-content-center">
       {totalPrice() > 0 && (
         <>
-          <h2 className="">Total: ${totalPrice()}</h2>
+          <h2 className="d-flex justify-content-center">Total: ${totalPrice()}</h2>
           <ContactForm />
         </>
       )}

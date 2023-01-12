@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 const CartContext = createContext([]);
 
 export const useCartContext = () => useContext(CartContext);
@@ -7,8 +8,7 @@ export const useCartContext = () => useContext(CartContext);
 export const CartContextProvider = ({ children }) => {
   const cartLS = JSON.parse(localStorage.getItem("cartLS")) ?? [];
   const [cartList, setCartList] = useState(cartLS);
-
-  const [buyerData, setBuyerData] = useState([]);
+  const [formData, setFormData] = useState({name:"",email:"", direction:"",phone:""});
 
   useEffect(() => {
     localStorage.setItem("cartLS", JSON.stringify(cartList));
@@ -33,16 +33,25 @@ export const CartContextProvider = ({ children }) => {
   };
   const getOrder = () => {
     const order = {
-      buyer: { name: "", phone: "", email: "" },
-      items: cartList.map(({ nombre, id, precio }) => ({
+      buyer: formData,
+      items: cartList.map(({ nombre, id, precio, cantidad }) => ({
         nombre,
         id,
         precio,
+        cantidad
       })),
       total: totalPrice(),
     };
-    console.log(order);
-    return order;
+    const db = getFirestore();
+    const queryOrder = collection(db, "orders");
+    addDoc(queryOrder, order)
+    .then((res) => {
+      Swal.fire({
+        title: 'Id de su orden:',
+        text: res.id,
+      })
+    })
+    
   };
 
   const totalPrice = () =>
@@ -58,16 +67,33 @@ export const CartContextProvider = ({ children }) => {
     setCartList(cartList.filter((product) => product.id !== id));
   };
 
+  const handleInputValue = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleInputSubmit = async (e) => {
+    e.preventDefault();
+    getOrder();
+    
+    
+  };
+
   return (
     <CartContext.Provider
       value={{
         cartList,
+        formData,
+        setFormData,
         addToCart,
         clearCart,
         totalQuantity,
         totalPrice,
         deleteItem,
         getOrder,
+        handleInputValue,
+        handleInputSubmit
       }}
     >
       {children}
